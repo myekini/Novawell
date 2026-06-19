@@ -13,7 +13,7 @@ const services = [
 const details = [
   ["Location",     "Kwara State, Nigeria"],
   ["Audience",     "Women and young girls"],
-  ["Timing",       "July 2025 planning window"],
+  ["Timing",       "In planning — date TBC"],
   ["Team needed",  "Doctor, SRH specialist, program lead"],
 ];
 

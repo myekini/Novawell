@@ -8,23 +8,23 @@ const pilotFacts = [
   {
     badge:     "Confirmed",
     badgeStyle: "bg-[#2E7D32]/10 text-[#2E7D32]",
+    cardStyle:  "bg-[#2E7D32]/[0.05] border border-[#2E7D32]/15",
     title:     "Kwara State pilot",
     text:      "The first outreach was scoped as a women-centered rural health program in Kwara State.",
-    border:    "border-primary-fixed",
   },
   {
     badge:     "Clinical scope",
     badgeStyle: "bg-surface-variant text-on-surface-variant",
+    cardStyle:  "bg-surface border border-outline-variant",
     title:     "Basic screening and SRH education",
     text:      "The service mix is intentionally narrow: checks, education, dignity kits, and referral guidance.",
-    border:    "border-primary-fixed",
   },
   {
     badge:     "Still finalizing",
     badgeStyle: "bg-[#ED6C02]/10 text-[#ED6C02]",
+    cardStyle:  "bg-[#ED6C02]/[0.05] border border-[#ED6C02]/15",
     title:     "Venue, named team, and partner list",
     text:      "Those details should be published after confirmation so the site stays accurate.",
-    border:    "border-outline-variant",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function AboutMission() {
               {pilotFacts.map((item) => (
                 <div
                   key={item.title}
-                  className={`border-l-2 ${item.border} pl-6 py-1`}
+                  className={`rounded-xl px-5 py-4 ${item.cardStyle}`}
                 >
                   <div className="mb-2">
                     <span className={`inline-block rounded px-2 py-1 status-tag ${item.badgeStyle}`}>

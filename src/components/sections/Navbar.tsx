@@ -10,7 +10,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "About",    href: "#about" },
     { name: "Programs", href: "#programs" },
-    { name: "Impact",   href: "#impact" },
+    { name: "Attend",   href: "#attend" },
     { name: "Partners", href: "#partners" },
   ];
 
@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-8 py-4">
         <a href="#top" className="flex items-center gap-2 font-bold text-primary">
           <HeartPulse className="h-6 w-6 text-primary" aria-hidden="true" />
-          <span style={{ fontFamily: "var(--font-bricolage)", fontSize: "24px", lineHeight: "32px", fontWeight: 600 }}>
+          <span className="font-display text-[24px] font-semibold leading-8">
             NovaWell
           </span>
         </a>
@@ -39,10 +39,9 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="#get-involved"
-            className="hidden items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-on-primary transition-opacity hover:opacity-80 md:inline-flex"
-            style={{ fontSize: "12px", lineHeight: "16px", letterSpacing: "0.1em", fontWeight: 700, textTransform: "uppercase" }}
+            className="hidden items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 label-caps text-on-primary transition-opacity hover:opacity-80 md:inline-flex"
           >
-            Support Work
+            Get involved
           </a>
           <button
             type="button"
@@ -81,7 +80,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="mt-3 flex min-h-12 items-center justify-center rounded-full bg-primary px-6 label-caps text-on-primary"
               >
-                Support Work
+                Get involved
               </a>
             </div>
           </motion.div>

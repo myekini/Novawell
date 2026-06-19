@@ -12,7 +12,7 @@ export default function Hero() {
 
   const facts = [
     ["Pilot state",    "Kwara"],
-    ["Pilot window",   "July 2025"],
+    ["Pilot window",   "Date TBC"],
     ["On-site care",   "Screening + education + referrals"],
   ];
 
@@ -44,7 +44,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
               <MapPin className="h-4 w-4 text-white" aria-hidden="true" />
               <span className="label-caps text-surface-container-highest">
-                Pilot outreach | Kwara State | July 2025
+                Pilot outreach | Kwara State | Upcoming
               </span>
             </div>
           </motion.div>

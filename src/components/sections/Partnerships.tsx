@@ -25,31 +25,52 @@ export default function Partnerships() {
           </p>
         </div>
 
-        {/* Partner cards */}
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {partners.map((partner, idx) => {
-            const Icon = partner.icon;
-            return (
-              <motion.article
-                key={partner.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.45, delay: idx * 0.05, ease: "easeOut" }}
-                className="rounded-2xl border border-outline-variant bg-surface p-6"
-              >
-                <Icon className="h-5 w-5 text-on-surface-variant" aria-hidden="true" />
-                <h3 className="mt-8 headline-md text-on-surface">{partner.title}</h3>
-                <p className="mt-3 body-md text-secondary">{partner.desc}</p>
-              </motion.article>
-            );
-          })}
+        {/* Partner layout: Government featured, others listed */}
+        <div className="mt-10 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Government — featured */}
+          <motion.article
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="flex flex-col justify-between rounded-2xl bg-primary p-8 text-on-primary"
+          >
+            <div>
+              <Landmark className="h-6 w-6 text-primary-fixed" aria-hidden="true" />
+              <h3 className="mt-6 headline-lg text-on-primary">Government</h3>
+              <p className="mt-3 body-md text-on-primary-container">
+                State, local, and primary health care agencies. NovaWell is designed to work with public health systems, not around them — government alignment comes before any expansion.
+              </p>
+            </div>
+          </motion.article>
+
+          {/* Other three — stacked list */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.45, delay: 0.06, ease: "easeOut" }}
+            className="flex flex-col divide-y divide-outline-variant rounded-2xl border border-outline-variant bg-surface"
+          >
+            {partners.slice(1).map((partner) => {
+              const Icon = partner.icon;
+              return (
+                <div key={partner.title} className="flex gap-4 px-6 py-5">
+                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-on-surface-variant" aria-hidden="true" />
+                  <div>
+                    <p className="body-md font-semibold text-on-surface">{partner.title}</p>
+                    <p className="mt-0.5 body-md text-secondary">{partner.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
 
         {/* Govt alignment note + CTA */}
         <div className="mt-10 grid gap-6 border-t border-outline-variant pt-8 md:grid-cols-[1fr_auto] md:items-center">
           <p className="body-md text-secondary max-w-[640px]">
-            NovaWell is designed to work with public health systems, not around them. State, local, and primary health care alignment comes before any expansion — so outreach builds on existing priorities rather than creating a parallel promise.
+            NovaWell is designed to work with public health systems, not around them. State, local, and primary health care alignment comes before any expansion, so outreach builds on existing priorities rather than creating a parallel promise.
           </p>
           <a
             href="#get-involved"
