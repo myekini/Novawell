@@ -12,7 +12,7 @@ export default function Hero() {
 
   const facts = [
     ["Pilot state",    "Kwara"],
-    ["Launch window",  "July 2025"],
+    ["Pilot window",   "July 2025"],
     ["On-site care",   "Screening + education + referrals"],
   ];
 
@@ -21,7 +21,7 @@ export default function Hero() {
       {/* Background image */}
       <div className="absolute inset-0 opacity-40 mix-blend-overlay">
         <Image
-          src="https://images.unsplash.com/photo-1780847614752-4b7c4d7f6c9d?auto=format&fit=crop&w=1920&q=85"
+          src="/hero-community.png"
           alt="Women gathered at a community event in Kwara State, Nigeria"
           fill
           priority
@@ -64,7 +64,7 @@ export default function Hero() {
           >
             Free checks, reproductive health education, and referral guidance brought into the community.
             <br /><br />
-            NovaWell is preparing its first rural outreach for women and young girls who may not have time, transport, or money for routine preventive care.
+            NovaWell&apos;s pilot model focuses on women and young girls who may not have time, transport, or money for routine preventive care.
           </motion.p>
 
           {/* CTAs */}

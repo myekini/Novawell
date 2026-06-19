@@ -9,7 +9,7 @@ const pilotFacts = [
     badge:     "Confirmed",
     badgeStyle: "bg-[#2E7D32]/10 text-[#2E7D32]",
     title:     "Kwara State pilot",
-    text:      "The first outreach is planned as a women-centered rural health program in Kwara State.",
+    text:      "The first outreach was scoped as a women-centered rural health program in Kwara State.",
     border:    "border-primary-fixed",
   },
   {
@@ -23,7 +23,7 @@ const pilotFacts = [
     badge:     "Still finalizing",
     badgeStyle: "bg-[#ED6C02]/10 text-[#ED6C02]",
     title:     "Venue, named team, and partner list",
-    text:      "Those details will be published after confirmation so the site stays accurate.",
+    text:      "Those details should be published after confirmation so the site stays accurate.",
     border:    "border-outline-variant",
   },
 ];
@@ -43,7 +43,7 @@ export default function AboutMission() {
             className="relative overflow-hidden rounded-2xl aspect-[3/4] lg:col-span-5"
           >
             <Image
-              src="https://images.unsplash.com/photo-1779357807569-18d3df9df645?auto=format&fit=crop&w=1200&q=80"
+              src="/about-community.png"
               alt="Women in colourful dress seated together at a community gathering in West Africa"
               fill
               sizes="(max-width: 1024px) 100vw, 520px"

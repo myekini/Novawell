@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,8 +16,6 @@ type VolunteerFormData = {
   message:    string;
 };
 
-const CONTACT_EMAIL = "hello@novawellhealth.org";
-
 const opportunities = [
   "Doctors, nurses, pharmacists, and allied health professionals",
   "Public health, social work, and medical students",
@@ -26,17 +24,23 @@ const opportunities = [
 
 export default function GetInvolved() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [draftHref, setDraftHref] = useState("");
+  const [serverError, setServerError] = useState("");
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } =
     useForm<VolunteerFormData>();
 
-  const onSubmit = (data: VolunteerFormData) => {
-    const subject = encodeURIComponent(`Volunteer interest from ${data.fullName}`);
-    const body = encodeURIComponent(
-      [`Full name: ${data.fullName}`, `Email: ${data.email}`, `Profession / role: ${data.profession}`, "", "How I would like to help:", data.message].join("\n")
-    );
-    setDraftHref(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`);
+  const onSubmit = async (data: VolunteerFormData) => {
+    setServerError("");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      setServerError(json.error ?? "Something went wrong. Please try again.");
+      return;
+    }
     setIsSubmitted(true);
   };
 
@@ -61,7 +65,9 @@ export default function GetInvolved() {
           <div className="mt-8 grid gap-4">
             {opportunities.map((item) => (
               <div key={item} className="flex gap-3 border-t border-outline-variant pt-4">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary text-xs font-bold">✓</span>
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary">
+                  <Check className="h-4 w-4" aria-hidden="true" />
+                </span>
                 <span className="body-md text-secondary">{item}</span>
               </div>
             ))}
@@ -90,14 +96,14 @@ export default function GetInvolved() {
                 <div>
                   <h3 className="headline-md text-on-surface">Tell us how you can help</h3>
                   <p className="mt-1.5 body-md text-secondary">
-                    This opens a prefilled email draft. Nothing is silently submitted.
+                    Fill in the form and we&apos;ll receive your message directly.
                   </p>
                 </div>
 
                 {[
-                  { id: "volunteer-full-name", field: "fullName" as const, label: "Full name",          type: "text",  placeholder: "Your full name",          rules: { required: "Name is required" } },
-                  { id: "volunteer-email",     field: "email"    as const, label: "Email address",      type: "email", placeholder: "you@example.com",         rules: { required: "Email is required", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Invalid email" } } },
-                  { id: "volunteer-profession",field: "profession"as const, label: "Profession or role", type: "text",  placeholder: "Doctor, student, organizer...", rules: { required: "Profession is required" } },
+                  { id: "volunteer-full-name", field: "fullName" as const, label: "Full name",          type: "text",  placeholder: "Your full name",               rules: { required: "Name is required", minLength: { value: 2, message: "Name is too short" } } },
+                  { id: "volunteer-email",     field: "email"    as const, label: "Email address",      type: "email", placeholder: "you@example.com",              rules: { required: "Email is required", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Invalid email" } } },
+                  { id: "volunteer-profession",field: "profession"as const, label: "Profession or role", type: "text",  placeholder: "Doctor, student, organizer...", rules: { required: "Profession is required", minLength: { value: 2, message: "Profession is too short" } } },
                 ].map(({ id, field, label, type, placeholder, rules }) => (
                   <div key={field} className="space-y-1.5">
                     <Label htmlFor={id} className="label-caps text-on-surface-variant">{label}</Label>
@@ -122,13 +128,20 @@ export default function GetInvolved() {
                     rows={4}
                     placeholder="A short note is enough"
                     aria-invalid={!!errors.message}
-                    {...register("message", { required: "Please share a brief note" })}
+                    {...register("message", { required: "Please share a brief note", minLength: { value: 10, message: "Please share a little more detail" } })}
                     className={`resize-none ${errors.message ? "border-error focus-visible:ring-error/20" : ""}`}
                   />
                   {errors.message && (
                     <p role="alert" className="body-md text-error text-sm">{errors.message.message}</p>
                   )}
                 </div>
+
+                {serverError && (
+                  <div role="alert" className="flex items-center gap-2 rounded-lg border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
+                    <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    {serverError}
+                  </div>
+                )}
 
                 <Button
                   type="submit"
@@ -138,7 +151,7 @@ export default function GetInvolved() {
                   {isSubmitting ? (
                     <span className="block h-5 w-5 rounded-full border-2 border-white border-t-transparent animate-spin" />
                   ) : (
-                    <>Prepare email draft <ArrowRight className="h-4 w-4" aria-hidden="true" /></>
+                    <>Send message <ArrowRight className="h-4 w-4" aria-hidden="true" /></>
                   )}
                 </Button>
               </motion.form>
@@ -153,17 +166,14 @@ export default function GetInvolved() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-fixed text-primary">
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
-                <h3 className="mt-5 headline-md text-on-surface">Email draft ready</h3>
+                <h3 className="mt-5 headline-md text-on-surface">Message sent!</h3>
                 <p className="mt-3 max-w-sm body-md text-secondary">
-                  Open the draft, review the message, and send it from your email app so the NovaWell team can reply directly.
+                  The NovaWell team has received your message and will reply to your email soon.
                 </p>
-                <Button asChild className="mt-7 h-11 rounded-full bg-primary px-6 label-caps text-on-primary hover:opacity-90">
-                  <a href={draftHref}>Open email draft</a>
-                </Button>
                 <Button
                   variant="outline"
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-3 h-11 rounded-full border-outline-variant px-6 label-caps text-on-surface hover:bg-surface-container-low"
+                  className="mt-7 h-11 rounded-full border-outline-variant px-6 label-caps text-on-surface hover:bg-surface-container-low"
                 >
                   Submit another response
                 </Button>
