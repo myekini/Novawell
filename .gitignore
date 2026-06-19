@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI IDE configs (local tool settings, not project source)
+.claude/
+.cursor/
+.gemini/
+.agents/
+
+# dev server logs
+*.err.log
+.next-dev-*.log
