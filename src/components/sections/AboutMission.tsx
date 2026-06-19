@@ -4,80 +4,99 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+const pilotFacts = [
+  {
+    badge:     "Confirmed",
+    badgeStyle: "bg-[#2E7D32]/10 text-[#2E7D32]",
+    title:     "Kwara State pilot",
+    text:      "The first outreach is planned as a women-centered rural health program in Kwara State.",
+    border:    "border-primary-fixed",
+  },
+  {
+    badge:     "Clinical scope",
+    badgeStyle: "bg-surface-variant text-on-surface-variant",
+    title:     "Basic screening and SRH education",
+    text:      "The service mix is intentionally narrow: checks, education, dignity kits, and referral guidance.",
+    border:    "border-primary-fixed",
+  },
+  {
+    badge:     "Still finalizing",
+    badgeStyle: "bg-[#ED6C02]/10 text-[#ED6C02]",
+    title:     "Venue, named team, and partner list",
+    text:      "Those details will be published after confirmation so the site stays accurate.",
+    border:    "border-outline-variant",
+  },
+];
+
 export default function AboutMission() {
-  const pilotFacts = [
-    {
-      label: "Confirmed",
-      title: "Kwara State pilot",
-      text: "The first outreach is planned as a women-centered rural health program in Kwara State.",
-    },
-    {
-      label: "Clinical scope",
-      title: "Basic screening and SRH education",
-      text: "The service mix is intentionally narrow: checks, education, dignity kits, and referral guidance.",
-    },
-    {
-      label: "Still finalizing",
-      title: "Venue, named team, and partner list",
-      text: "Those details should be published after confirmation so the site stays accurate.",
-    },
-  ];
-
   return (
-    <section id="about" className="bg-cream py-12 md:py-20">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-5 md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className="relative min-h-[420px] overflow-hidden rounded-card bg-charcoal md:min-h-[560px]"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1779357807569-18d3df9df645?auto=format&fit=crop&w=1200&q=80"
-            alt="Women in colourful dress seated together at a community gathering in West Africa"
-            fill
-            sizes="(max-width: 1024px) 100vw, 520px"
-            className="object-cover object-center"
-          />
-        </motion.div>
+    <section id="about" className="bg-surface-container-low py-section-gap-mobile md:py-section-gap-desktop">
+      <div className="mx-auto max-w-[1200px] px-8">
+        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
-          className="flex flex-col justify-center"
-        >
-          <div className="max-w-[680px]">
-            <h2 className="text-[40px] font-black leading-[1.02] text-charcoal md:text-[58px]">
-              A focused pilot before a big promise.
-            </h2>
-            <p className="mt-6 text-[17px] leading-[1.7] text-stone">
-              NovaWell Community Health Initiative is building a practical outreach model: take simple preventive services to women, document what happens, and use the evidence to improve the next visit.
-            </p>
-          </div>
-
-          <div className="mt-9 border-t border-border">
-            {pilotFacts.map((item) => (
-              <div key={item.label} className="grid gap-3 border-b border-border py-5 sm:grid-cols-[120px_1fr]">
-                <div className="text-[13px] font-extrabold text-sage">{item.label}</div>
-                <div>
-                  <h3 className="text-[18px] font-extrabold leading-tight text-charcoal">{item.title}</h3>
-                  <p className="mt-2 text-[15px] leading-[1.65] text-stone">{item.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <a
-            href="#team"
-            className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-btn bg-charcoal px-5 text-[15px] font-extrabold text-white transition hover:bg-forest"
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-2xl aspect-[3/4] lg:col-span-5"
           >
-            Meet the team
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
-        </motion.div>
+            <Image
+              src="https://images.unsplash.com/photo-1779357807569-18d3df9df645?auto=format&fit=crop&w=1200&q=80"
+              alt="Women in colourful dress seated together at a community gathering in West Africa"
+              fill
+              sizes="(max-width: 1024px) 100vw, 520px"
+              className="object-cover object-center"
+            />
+          </motion.div>
+
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
+            className="flex flex-col gap-8 lg:col-span-6 lg:col-start-7"
+          >
+            <div>
+              <h2 className="headline-lg text-primary mb-4">
+                A focused pilot before a big promise.
+              </h2>
+              <p className="body-md text-secondary">
+                NovaWell Community Health Initiative is building a practical outreach model: take simple preventive services to women, document what happens, and use the evidence to improve the next visit.
+              </p>
+            </div>
+
+            {/* Status items */}
+            <div className="space-y-6">
+              {pilotFacts.map((item) => (
+                <div
+                  key={item.title}
+                  className={`border-l-2 ${item.border} pl-6 py-1`}
+                >
+                  <div className="mb-2">
+                    <span className={`inline-block rounded px-2 py-1 status-tag ${item.badgeStyle}`}>
+                      {item.badge}
+                    </span>
+                  </div>
+                  <h3 className="headline-md text-primary mb-1">{item.title}</h3>
+                  <p className="body-md text-secondary">{item.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4">
+              <a
+                href="#get-involved"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 label-caps text-on-primary transition-opacity hover:opacity-90 group"
+              >
+                Get involved
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

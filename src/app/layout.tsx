@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`h-full antialiased ${bricolage.variable} ${inter.variable}`}>
-      <body className="min-h-full flex flex-col bg-cream text-charcoal">
+      <body className="min-h-full flex flex-col bg-background text-on-surface">
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
