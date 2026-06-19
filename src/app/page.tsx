@@ -4,6 +4,7 @@ import AboutMission from "@/components/sections/AboutMission";
 import FocusAreas from "@/components/sections/FocusAreas";
 import ProgramSpotlight from "@/components/sections/ProgramSpotlight";
 import ImpactStats from "@/components/sections/ImpactStats";
+import MeetFounder from "@/components/sections/MeetFounder";
 import AttendOutreach from "@/components/sections/AttendOutreach";
 import GetInvolved from "@/components/sections/GetInvolved";
 import Partnerships from "@/components/sections/Partnerships";
@@ -17,6 +18,7 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <AboutMission />
+        <MeetFounder />
         <FocusAreas />
         <ProgramSpotlight />
         <ImpactStats />
