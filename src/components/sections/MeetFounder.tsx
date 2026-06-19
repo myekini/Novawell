@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Linkedin } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -117,7 +117,7 @@ export default function MeetFounder() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 label-caps text-on-surface transition-colors hover:border-primary hover:text-primary"
               >
-                <Linkedin className="h-4 w-4" aria-hidden="true" />
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 LinkedIn
               </a>
               <a
