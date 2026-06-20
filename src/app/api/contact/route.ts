@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const TO_EMAIL = "daudsoffiyah808@gmail.com";
+const TO_EMAIL = "myekini1@gmail.com";
 
 const contactSchema = z.object({
   fullName: z.string().trim().min(2, "Full name is required."),
